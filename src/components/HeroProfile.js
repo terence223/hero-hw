@@ -35,11 +35,9 @@ function HeroProfile() {
 
     // 計算剩餘點數
     const leftPoint = () => {
-        if(!abilities.data) return 
+        if(!abilities.data) return 0;
         return abilities.total - countObjectValueTotal(abilities.data);
     }
-
-    
 
     // 能力值改變函式
     const onChangeAbility = (key, val) => {
@@ -91,7 +89,6 @@ function HeroProfile() {
     }, [heroId]);
 
     return (
-        
         <TheContainer maxWidth="md">
             <DashboardPaper>
                 <Grid container spacing={2}>
@@ -116,7 +113,6 @@ function HeroProfile() {
                 </Grid>
             </DashboardPaper>
         </TheContainer>
-        
     );
 }
 
@@ -125,7 +121,7 @@ const TheContainer = styled(Container)`
 `;
 
 const LeftPointSpan = styled.span`
-  line-height: 50px;
+    line-height: 50px;
 `;
 
 const StoreGrid = styled(Grid)`
