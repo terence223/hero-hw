@@ -9,10 +9,18 @@
 import React from 'react';
 import styled from 'styled-components';
 import {Grid, Card, CardActionArea, CardMedia, CardContent, Typography} from '@material-ui/core';
-import { Link } from "react-router-dom";
+import { Link, useRouteMatch } from "react-router-dom";
 import PropTypes from 'prop-types';
 
 function HeroCard({ heroData }) {
+
+    // 判定這張卡片是否是網址正在讀取資料的 Hero
+    let selected = useRouteMatch({
+        path: `/heroes/${heroData.id}`,
+        strict: true,
+        sensitive: true
+    });
+
     return (
         <GridCol item xs={6} sm={4} md={4} lg={3}>
             <TheLink to={`/heroes/${heroData.id}`}>
@@ -25,7 +33,7 @@ function HeroCard({ heroData }) {
                         />
                         <CardContent>
                             <CardTitle gutterBottom variant="h5" component="h2">
-                                { heroData.name }
+                                { selected ? <SelectedName>{ heroData.name }</SelectedName> : <span>{ heroData.name }</span> }
                             </CardTitle>
                         </CardContent>
                     </CardActionArea>
@@ -49,6 +57,10 @@ const CardTitle = styled(Typography)`
 
 const GridCol = styled(Grid)`
     margin-bottom: 20px;
+`;
+
+const SelectedName = styled.span`
+    color: #E3325A;
 `;
 
 export default HeroCard;
