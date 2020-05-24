@@ -14,6 +14,7 @@ import styled from 'styled-components';
 import { Fab } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
+import PropTypes from 'prop-types';
 
 function ValueDashboard({abilityName, abilityValue, achieveMax, onChangeAbility}) {
     if(!abilityName) {
