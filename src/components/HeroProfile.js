@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Grid, Button, CircularProgress, Container } from '@material-ui/core';
+import { notifyError, notifySuccess } from '../tool/notification';
 import SaveIcon from '@material-ui/icons/Save';
 import styled from 'styled-components';
 import axios from 'axios';
@@ -11,6 +12,7 @@ import {
   useParams,
   useRouteMatch
 } from "react-router-dom";
+import { store } from 'react-notifications-component';
 
 import ValueDashboard from './ValueDashboard';
 
@@ -49,7 +51,7 @@ function HeroProfile() {
                 })
             })
             .catch((error) => {
-
+                notifySuccess('錯誤！', '無法取得英雄資料，很抱歉！');
             })
     }
 
@@ -65,7 +67,7 @@ function HeroProfile() {
 
     const onStoreAbilities = () => {
         if(leftPoint() > 0) {
-            alert('錯誤!', '還有剩餘點數未用完喔！');
+            notifyError('錯誤!', '還有剩餘點數未用完喔！');
             return
         }
     
@@ -73,9 +75,13 @@ function HeroProfile() {
         axios.patch(`https://hahow-recruit.herokuapp.com/heroes/${heroId}/profile`, abilities.data)
             .then((res) => {
                 setIsStoring(false);
+                if(res.data === "OK") {
+                    notifySuccess('資料儲存成功！', '數值已更新！');
+                }
             })
             .catch((error) => {
                 setIsStoring(false);
+                notifySuccess('資料儲存失敗！', '無法儲存資料！');
             })
     }
 

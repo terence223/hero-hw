@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import styled from 'styled-components';
 import { Grid, Container } from '@material-ui/core';
+import { notifySuccess } from '../tool/notification';
 
 import HeroProfile from '../components/HeroProfile';
 import HeroCard from '../components/HeroCard';
@@ -20,6 +21,7 @@ function Heroes() {
                 setHeros(res.data);
             })
             .catch((error) => {
+                notifySuccess('錯誤！', '網站發生錯誤，很抱歉！');
             });
     }
     
