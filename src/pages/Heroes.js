@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
+import styled from 'styled-components';
+import { Grid, Container } from '@material-ui/core';
 
 import HeroProfile from '../components/HeroProfile';
 import HeroCard from '../components/HeroCard';
 
 function Heroes() {
 
-    let { path, url } = useRouteMatch();
+    let { path } = useRouteMatch();
 
     const [heros, setHeros] = useState([]);    // 所有英雄基本資料
 
@@ -27,9 +29,13 @@ function Heroes() {
 
     return (
         <div>
-            {
-                heros.map(hero => <HeroCard key={hero.id} heroData={hero} />)
-            }
+            <TheContainer maxWidth="md">
+                <Grid container spacing={2}>
+                    {
+                        heros.map(hero => <HeroCard key={hero.id} heroData={hero} />)
+                    }
+                </Grid>
+            </TheContainer>
             <Switch>
                 <Route path={`${path}/:heroId`}>
                     <HeroProfile />
@@ -38,5 +44,9 @@ function Heroes() {
         </div>
     );
 }
+
+const TheContainer = styled(Container)`
+    margin-top: 40px;
+`;
 
 export default Heroes;
