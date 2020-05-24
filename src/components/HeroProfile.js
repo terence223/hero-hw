@@ -1,3 +1,9 @@
+/**
+ * 
+ * 英雄能力值面板
+ * 
+ */
+
 import React, { useState, useEffect } from 'react';
 import { Grid, Button, CircularProgress, Container } from '@material-ui/core';
 import { notifyError, notifySuccess } from '../tool/notification';
@@ -65,6 +71,7 @@ function HeroProfile() {
         })
     }
 
+    // 儲存能力值的函式
     const onStoreAbilities = () => {
         if(leftPoint() > 0) {
             notifyError('錯誤!', '還有剩餘點數未用完喔！');

@@ -1,3 +1,11 @@
+/**
+ * 英雄卡片顯示元件
+ * 
+ * Props
+ * heroData          Object     英雄資料，有 id, name 和 image
+ * 
+ */
+
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import {Grid, Card, CardActionArea, CardMedia, CardContent, Typography} from '@material-ui/core';
@@ -28,6 +36,10 @@ function HeroCard({ heroData }) {
         </GridCol>
     );
 }
+
+HeroCard.propTypes = {
+    heroData: PropTypes.object.isRequired,
+};
 
 const SelectedName = styled.span`
     color: #E3325A;

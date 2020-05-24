@@ -1,3 +1,14 @@
+/**
+ * 能力值顯示和增減的元件
+ * 
+ * Props
+ * abilityName       String     能力值名
+ * abilityValue      Number     能力值數值
+ * achieveMax        Boolean    能力值是否已達使用上限
+ * onChangeAbility   Function   改變值時呼叫並傳回能力名和新的能力值
+ * 
+ */
+
 import React from 'react';
 import styled from 'styled-components';
 import { Fab } from '@material-ui/core';
@@ -29,6 +40,13 @@ function ValueDashboard({abilityName, abilityValue, achieveMax, onChangeAbility}
             </Fab>
         </Container>
     );
+};
+
+ValueDashboard.propTypes = {
+    abilityName: PropTypes.string,
+    abilityValue: PropTypes.number,
+    achieveMax: PropTypes.bool,
+    onChangeAbility: PropTypes.func
 };
 
 const Container = styled.div`
