@@ -25,7 +25,7 @@ function HeroCard({ heroData }) {
                         />
                         <CardContent>
                             <CardTitle gutterBottom variant="h5" component="h2">
-                                Lizard
+                                { heroData.name }
                             </CardTitle>
                         </CardContent>
                     </CardActionArea>

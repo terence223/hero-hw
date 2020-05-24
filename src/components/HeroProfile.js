@@ -5,7 +5,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { Grid, Button, CircularProgress, Container } from '@material-ui/core';
+import { Grid, Button, CircularProgress, Container, Paper } from '@material-ui/core';
 import { notifyError, notifySuccess } from '../tool/notification';
 import SaveIcon from '@material-ui/icons/Save';
 import styled from 'styled-components';
@@ -97,29 +97,32 @@ function HeroProfile() {
     }, [heroId]);
 
     return (
+        
         <TheContainer maxWidth="md">
-            <Grid container spacing={2}>
-                <Grid container justify="center" item xs={12} sm={12} md={6} lg={6}>
-                    { 
-                        abilities.data && Object.entries(abilities.data).map((val, index) => <ValueDashboard key={index} abilityName={val[0]} abilityValue={val[1]} onChangeAbility={onChangeAbility}  achieveMax={isAchieveMaximum(abilities.data)} />)
-                    }
+            <DashboardPaper>
+                <Grid container spacing={2}>
+                    <Grid container justify="center" item xs={12} sm={12} md={6} lg={6}>
+                        { 
+                            abilities.data && Object.entries(abilities.data).map((val, index) => <ValueDashboard key={index} abilityName={val[0]} abilityValue={val[1]} onChangeAbility={onChangeAbility}  achieveMax={isAchieveMaximum(abilities.data)} />)
+                        }
+                    </Grid>
+                    <StoreGrid container item xs={12} sm={12} md={6} lg={6}>
+                        <LeftPointSpan>剩餘點數 : { leftPoint() }</LeftPointSpan>
+                        <StoreButton
+                            variant="contained"
+                            color="primary"
+                            size="large"
+                            disabled={isStoring}
+                            startIcon={ isStoring ? <CircularProgress color="inherit" size={20} /> : <SaveIcon /> }
+                            onClick={() => onStoreAbilities()}
+                        >
+                            { isStoring ? '處理中' : '儲存' }
+                        </StoreButton>
+                    </StoreGrid>
                 </Grid>
-                <StoreGrid container item xs={12} sm={12} md={6} lg={6}>
-                    <LeftPointSpan>剩餘點數 : { leftPoint() }</LeftPointSpan>
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        size="large"
-                        style={{height: '42px'}}
-                        disabled={isStoring}
-                        startIcon={ isStoring ? <CircularProgress color="inherit" size={20} /> : <SaveIcon /> }
-                        onClick={() => onStoreAbilities()}
-                    >
-                        { isStoring ? '處理中' : '儲存' }
-                    </Button>
-                </StoreGrid>
-            </Grid>
+            </DashboardPaper>
         </TheContainer>
+        
     );
 }
 
@@ -132,10 +135,19 @@ const LeftPointSpan = styled.span`
 `;
 
 const StoreGrid = styled(Grid)`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`;
+
+const StoreButton = styled(Button)`
+    height: 42px;
+`;
+
+const DashboardPaper = styled(Paper)`
+    margin-bottom: 30px;
+    padding: 20px;
 `;
 
 export default HeroProfile;
