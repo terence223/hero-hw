@@ -26,7 +26,7 @@ function ValueDashboard({abilityName, abilityValue, achieveMax, onChangeAbility}
             <AbilityNameSpan>
                 { abilityName.toUpperCase() }
             </AbilityNameSpan>
-            <Fab size="small" color="secondary" aria-label="remove" disabled={!abilityValue} onClick={() => {
+            <Fab data-testid="remove" size="small" color="secondary" aria-label="remove" disabled={!abilityValue} onClick={() => {
                 if(abilityValue > 0) onChangeAbility(abilityName, abilityValue - 1)
             }}>
                 <RemoveIcon />
