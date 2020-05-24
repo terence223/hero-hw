@@ -6,7 +6,7 @@
  * 
  */
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import {Grid, Card, CardActionArea, CardMedia, CardContent, Typography} from '@material-ui/core';
 import { Link } from "react-router-dom";
@@ -41,10 +41,6 @@ HeroCard.propTypes = {
 
 const TheLink = styled(Link)`
     text-decoration: none;
-`;
-
-const SelectedName = styled.span`
-    color: #E3325A;
 `;
 
 const CardTitle = styled(Typography)`

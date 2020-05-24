@@ -10,15 +10,7 @@ import { notifyError, notifySuccess } from '../tool/notification';
 import SaveIcon from '@material-ui/icons/Save';
 import styled from 'styled-components';
 import axios from 'axios';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useParams,
-  useRouteMatch
-} from "react-router-dom";
-import { store } from 'react-notifications-component';
+import { useParams } from "react-router-dom";
 
 import ValueDashboard from './ValueDashboard';
 
@@ -47,19 +39,7 @@ function HeroProfile() {
         return abilities.total - countObjectValueTotal(abilities.data);
     }
 
-    // 取得選定的英雄 id 和能力值資料
-    const fetchHerosValue = (heroId) => {
-        axios.get(`https://hahow-recruit.herokuapp.com/heroes/${heroId}/profile`)
-            .then((res) => {
-                setAbilities({
-                    total : countObjectValueTotal(res.data),
-                    data: res.data
-                })
-            })
-            .catch((error) => {
-                notifySuccess('錯誤！', '無法取得英雄資料，很抱歉！');
-            })
-    }
+    
 
     // 能力值改變函式
     const onChangeAbility = (key, val) => {
@@ -93,6 +73,20 @@ function HeroProfile() {
     }
 
     useEffect(() => {
+        // 取得選定的英雄 id 和能力值資料
+        const fetchHerosValue = (heroId) => {
+            axios.get(`https://hahow-recruit.herokuapp.com/heroes/${heroId}/profile`)
+                .then((res) => {
+                    setAbilities({
+                        total : countObjectValueTotal(res.data),
+                        data: res.data
+                    })
+                })
+                .catch((error) => {
+                    notifySuccess('錯誤！', '無法取得英雄資料，很抱歉！');
+                })
+        }
+
         fetchHerosValue(heroId);
     }, [heroId]);
 
