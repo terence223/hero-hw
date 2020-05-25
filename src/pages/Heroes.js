@@ -8,7 +8,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import styled from 'styled-components';
-import { Grid, Container } from '@material-ui/core';
+import { Grid, Container, CircularProgress } from '@material-ui/core';
 import { notifySuccess } from '../tool/notification';
 
 import HeroProfile from '../components/HeroProfile';
@@ -35,6 +35,8 @@ function Heroes() {
         fetchHeros();
     }, []);
 
+    if(!heros.length) return(<LoadingPage><CircularProgress color="inherit" size={60} /></LoadingPage>)
+
     return (
         <div>
             <TheContainer maxWidth="md">
@@ -55,6 +57,13 @@ function Heroes() {
 
 const TheContainer = styled(Container)`
     margin-top: 40px;
+`;
+
+const LoadingPage = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 300px;
 `;
 
 export default Heroes;

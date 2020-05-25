@@ -18,11 +18,11 @@ export default function App() {
     return (
         <Router>
             <Switch>
-                <Route path="/">
-                    <Redirect to="/heroes" />
-                </Route>
                 <Route path="/heroes">
                     <Heroes />
+                </Route>
+                <Route path="/">
+                    <Redirect to="/heroes" />
                 </Route>
             </Switch>
         </Router>

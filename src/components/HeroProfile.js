@@ -88,6 +88,8 @@ function HeroProfile() {
         fetchHerosValue(heroId);
     }, [heroId]);
 
+    if(!Object.keys(abilities).length) return null;
+
     return (
         <TheContainer maxWidth="md">
             <DashboardPaper>
