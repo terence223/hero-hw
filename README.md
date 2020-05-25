@@ -1,68 +1,59 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 執行方法
 
-## Available Scripts
+主要使用 [create-react-app](https://github.com/facebook/create-react-app) 建構專案
 
-In the project directory, you can run:
+### `yarn install`
+
+安裝所有使用的第三方套件
 
 ### `yarn start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+執行程式，預設會在 [http://localhost:3000/](http://localhost:3000/)
 
 ### `yarn test`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+執行測試程式，寫了兩個很簡單的 unit test
 
-### `yarn build`
+## 專案架構邏輯
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+用 hook 開發，主要分為四個 components，Heroes、HeroCard、HeroProfile 和 ValueDashboard
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+* `Heroes` 主頁面，主要取得 Heroes 資料供子元件使用
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* `HeroCard` 英雄基本資料的顯示卡片元件
 
-### `yarn eject`
+* `HeroProfile` 下方的英雄能力值面板
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+* `ValueDashboard` 四個能力值的加減元件
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 使用第三方元件
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+* `@material-ui/core` 支援 React 的 Material UI 介面工具
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+* `@material-ui/icons` Material UI 所需使用的 icon
 
-## Learn More
+* `@testing-library/jest-dom` Unit Test 工具 Jest
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+* `axios` 基於 Promise 的 http 請求工具
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+* `prop-types` 可以用來檢查 props 資料形態的工具
 
-### Code Splitting
+* `react-notifications-component` 一個看起來還算好看的 notifications 工具，用來取代 alert
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+* `react-router-dom` React 的 router 解決方案
 
-### Analyzing the Bundle Size
+* `styled-components` CSS in JS 主流解決方案
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+## 註解撰寫原則
 
-### Making a Progressive Web App
+* 每個檔案頂部都會大概說明該檔案用途，若是 React component 則會詳細記下 props 的資訊
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+* function 和 重要變數都會寫個簡單的註解說明該用途，不會寫太詳細以免文字誤導細節
 
-### Advanced Configuration
+* 若覺得某個寫法不好未來需要修正時也會寫註解紀錄
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+## 遇到問題
 
-### Deployment
+有些東西其實很久沒寫了，像是 react-router，遇到時卡了一下
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+另外覺得 bootstrap 有點醜所以選擇用 material UI 建構大概介面架構，不過第一次用對於它背後發生什麼事有點不清楚，就多試多看文件
