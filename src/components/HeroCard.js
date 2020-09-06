@@ -1,5 +1,5 @@
 /**
- * 英雄卡片顯示元件
+ * 英雄卡片顯示元件規格
  * 
  * Props
  * heroData          Object     英雄資料，有 id, name 和 image
